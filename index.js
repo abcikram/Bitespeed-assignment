@@ -1,12 +1,13 @@
 import express from "express";
 import Colors from 'colors';
 import mongoose from 'mongoose'
-import Router from '../src/router/router.js'
-
+import Router from './src/router/router.js'
+import dotenv from 'dotenv'
 
 
 const app = express();
 
+dotenv.config()
 
 app.use(express.json());
 
@@ -17,7 +18,7 @@ app.get('/',(req,res) =>{
 })
 
 
-mongoose.connect('mongodb+srv://roy146571:Ska1FanAZAgUX18k@cluster0.xpt1akt.mongodb.net/bitspeed', {
+mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 })
@@ -28,7 +29,7 @@ app.use('/',Router)
 
 
 
-const PORT =  process.env.PORT || 8000;
+const PORT =  process.env.PORT;
 
 app.listen(PORT,() =>{
     console.log(`Server running on port ${PORT}`.yellow.bold)
