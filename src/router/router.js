@@ -7,9 +7,4 @@ router.post('/identify', addCustomer)
 
 
 
-
-
-
-
-
 export default router
